@@ -3,15 +3,11 @@ const canvas = document.getElementById("canvas")
 const contexto = canvas.getContext("2d")
 const startScreen = document.getElementById("start")
 const startButton = document.getElementById("start-button")
-const FPS = 20
+const FPS = 50
 
 
 
 // Funciones
-const inicio = ()=>{
-    gameLoop()
-}
-
 const gameLoop = ()=>{
     console.log("Funciono")
 
@@ -31,5 +27,12 @@ const gameLoop = ()=>{
 
 
 // AddEventListeners
-addEventListener("load", inicio)
+startButton.addEventListener("click", ()=>{
+
+    startScreen.style.display = "none"
+    canvas.style.display = "block"
+
+    addEventListener("load", gameLoop())
+
+})
 

@@ -4,7 +4,7 @@ const contexto = canvas.getContext("2d")
 const startScreen = document.getElementById("start")
 const startButton = document.getElementById("start-button")
 const FPS = 50
-
+const pieza = new Piezas()
 
 
 // Funciones
@@ -15,7 +15,7 @@ const gameLoop = ()=>{
     contexto.clearRect(0, 0, canvas.width, canvas.height)
 
     // Movimientos
-
+    pieza.dibujarPiezas()
 
     // Dibujados
 

@@ -7,6 +7,8 @@ class Piezas{
         this.y = 0
         this.w = 40
         this.h = 40
+        this.aumentoDist = 0
+        this.dist = 50
         this.angulo = 1
         this.tipoPieza = 4
         this.colores = ["red", "purple", "green", "yellow", "blue", "brown"]
@@ -192,6 +194,36 @@ class Piezas{
             }
         }
     }
+
+    rotar = ()=>{
+        if(this.angulo < 3){
+            this.angulo ++
+        }else{
+            this.angulo = 0
+        }
+    }
+
+    limpiarCanvas = ()=>{
+        contexto.fillStyle = "lightgray"
+        contexto.fillRect(0, 0, canvas.width, canvas.height)
+    }
+
+    moveDrch = ()=>{
+          this.x ++
+      }
+  
+      moveIzq = ()=>{
+          this.x --
+      }
+
+    estaAbajo = ()=>{
+    if(this.aumentoDist < this.dist){
+        this.aumentoDist ++
+        } else{
+            this.y ++
+          this.aumentoDist = 0
+        }
+      }
 
 }
 

@@ -8,22 +8,27 @@ const tablero = new Tablero()
 
 
 // Funciones
+
+const inicio = ()=>{
+
+    listeners()
+
+    setInterval(gameLoop, 1000 / FPS)
+    
+}
+
 const gameLoop = ()=>{
     console.log("Funciono")
 
     // Limpieza del canvas
-    contexto.clearRect(0, 0, canvas.width, canvas.height)
+    tablero.pieza.limpiarCanvas()
 
     // Movimientos
-    tablero.pieza.dibujarPiezas()
-    tablero.dibujarPanel()
+    tablero.pieza.estaAbajo()
 
     // Dibujados
-
-
-    // Recursión
-    setInterval(gameLoop, 1000 / FPS)
-
+    tablero.dibujarPanel()
+    tablero.pieza.dibujarPiezas()
 }
 
 
@@ -33,7 +38,26 @@ startButton.addEventListener("click", ()=>{
     startScreen.style.display = "none"
     canvas.style.display = "block"
 
-    addEventListener("load", gameLoop())
+    addEventListener("load", inicio())
 
 })
+
+const listeners = ()=>{
+    addEventListener("keydown", evt =>{
+        const {key} = evt
+        switch(key){
+            case "ArrowUp": tablero.pieza.rotar()
+            break
+
+            case "ArrowDown": 
+            break
+
+            case "ArrowLeft": tablero.pieza.moveDrch()
+            break
+
+            case "ArrowRight": tablero.pieza.moveIzq()
+            break
+        }
+    })
+}
 

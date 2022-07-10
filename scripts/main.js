@@ -52,10 +52,10 @@ const listeners = ()=>{
             case "ArrowDown": 
             break
 
-            case "ArrowLeft": tablero.pieza.moveDrch()
+            case "ArrowLeft": tablero.pieza.moveIzq()
             break
 
-            case "ArrowRight": tablero.pieza.moveIzq()
+            case "ArrowRight": tablero.pieza.moveDrch()
             break
         }
     })

@@ -8,6 +8,7 @@ class Piezas{
         this.w = 40
         this.h = 40
         this.aumentoDist = 0
+        this.margen = 4
         this.dist = 50
         this.angulo = 1
         this.tipoPieza = 4
@@ -188,7 +189,7 @@ class Piezas{
                 if(this.bloques[this.tipoPieza][this.angulo][fila][col] !== 0){
                     contexto.fillStyle = this.colores[this.tipoPieza]
                     const x0 = (this.x + col - 1) * this.w
-                    const y0 = (this.y + fila) * this.h
+                    const y0 = (this.y + fila - this.margen) * this.h
                     contexto.fillRect(x0, y0, this.w, this.h)
                 }
             }

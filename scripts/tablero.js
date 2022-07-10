@@ -11,6 +11,11 @@ class Tablero{
         [9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9],
         [9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9],
         [9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9],
+        // Margen
+        [9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9],
+        [9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9],
+        [9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9],
+        [9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9],
         [9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9],
         [9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9],
         [9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9],
@@ -32,8 +37,8 @@ class Tablero{
             for(let col = 1; col < 10; col ++){
                 if(this.panel[fila][col] !== 0){
                     contexto.fillStyle = this.pieza.colores[this.panel[fila][col]]
-                    let xI = (col) * this.pieza.w
-                    let yI = (fila) * this.pieza.h
+                    let xI = (col - 1) * this.pieza.w
+                    let yI = (fila - this.pieza.margen) * this.pieza.h
 
                     contexto.fillRect(xI, yI, this.pieza.w, this.pieza.h)
                 }

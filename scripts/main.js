@@ -232,12 +232,12 @@ const tablero = [
     [9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9],
     [9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9],
     [9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9],
-    [9, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 9],
-    [9, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 9],
     [9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9],
     [9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9],
     [9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9],
-    [9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9]
+    [9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9],
+    [9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9],
+    [9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9]
 ]
 
 const margen = 4
@@ -280,29 +280,70 @@ const ObjetoPieza = function(){
         if(this.aumentoDist < this.dist){
             this.aumentoDist ++
         } else{
-            this.y ++
-            this.aumentoDist = 0
+           if(!this.colision(this.angulo, this.y + 1, this.x)){
+              this.y++
+           } else{
+            this.dibujarEnPanel()
+            this.nueva()
+           }
+           this.aumentoDist = 0
         }
     }
 
     this.rotar = function(){
-        if(this.angulo < 3){
-            this.angulo ++
+        let nuevoAngulo = this.angulo
+        if(nuevoAngulo < 3){
+          nuevoAngulo ++
         } else{
-            this.angulo = 0
+          nuevoAngulo = 0
+        }
+        if(!this.colision(nuevoAngulo, this.y, this.x)){
+          this.angulo = nuevoAngulo
+        } else{
+          console.log("Hola")
         }
     }
 
     this.abajo = ()=>{
-        this.y ++
+        if(!this.colision(this.angulo, this.y + 1, this.x)){
+          this.y ++
+        }
     }
 
     this.izq = ()=>{
+      if(!this.colision(this.angulo, this.y, this.x - 1)){
         this.x --
+      }
     }
 
     this.der = ()=>{
-        this.x ++
+        if(!this.colision(this.angulo, this.y, this.x + 1)){
+          this.x ++
+        }
+    }
+
+    this.colision = function(nuevoAngulo, filaNueva, colNueva){
+      let haycolision = false
+      for(let fila = 0; fila < 4; fila++){
+        for(let col = 0; col < 4; col++){
+          if(piezas[this.tipoPieza][nuevoAngulo][fila][col] !== 0){
+            if(tablero[filaNueva + fila][colNueva + col] !== 0){
+              haycolision = true
+            }
+          }
+        }
+      }
+      return haycolision
+    }
+
+    this.dibujarEnPanel = function(){
+      for(let fila = 0; fila < 4; fila ++){
+        for(let col = 0; col < 4; col ++){
+          if(piezas[this.tipoPieza][this.angulo][fila][col] !== 0){
+            tablero[this.y + fila][this.x + col] = piezas[this.tipoPieza][this.angulo][fila][col]
+          }
+        }
+      }
     }
 
     this.nueva()
@@ -310,11 +351,6 @@ const ObjetoPieza = function(){
 
 
 // Funciones
-const limpiarCanvas = ()=>{
-    contexto.fillStyle = "gray"
-    contexto.fillRect(0, 0, canvas.width, canvas.height)
-}
-
 const dibujarTablero = ()=>{
     for(let fila = 0; fila < 16 + margen; fila ++){
         for(let col = 1; col < 10 + 1; col ++){
@@ -327,6 +363,11 @@ const dibujarTablero = ()=>{
         }
     }
 }
+const limpiarCanvas = ()=>{
+    contexto.fillStyle = "gray"
+    contexto.fillRect(0, 0, canvas.width, canvas.height)
+}
+
 
 const listeners = ()=>{
     addEventListener("keydown", evt =>{
@@ -359,9 +400,9 @@ const inicio = ()=>{
 const gameLoop = ()=>{
 
     limpiarCanvas()
+    pieza.estaAbajo()
     dibujarTablero()
     pieza.dibujar()
-    pieza.estaAbajo()
 
 }
 

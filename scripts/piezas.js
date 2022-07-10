@@ -11,7 +11,7 @@ class Piezas{
         this.margen = 4
         this.dist = 50
         this.angulo = 1
-        this.tipoPieza = 4
+        this.random = Math.floor(Math.random() * 6)
         this.colores = ["red", "purple", "green", "yellow", "blue", "brown"]
         this.bloques = [
 
@@ -186,8 +186,8 @@ class Piezas{
     dibujarPiezas = () =>{
         for(let fila = 0; fila < 4; fila++){
             for(let col = 0; col < 4; col++){
-                if(this.bloques[this.tipoPieza][this.angulo][fila][col] !== 0){
-                    contexto.fillStyle = this.colores[this.tipoPieza]
+                if(this.bloques[this.random][this.angulo][fila][col] !== 0){
+                    contexto.fillStyle = this.colores[this.random]
                     const x0 = (this.x + col - 1) * this.w
                     const y0 = (this.y + fila - this.margen) * this.h
                     contexto.fillRect(x0, y0, this.w, this.h)
@@ -224,7 +224,6 @@ class Piezas{
             this.y ++
           this.aumentoDist = 0
         }
-      }
-
+    }
 }
 

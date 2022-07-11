@@ -304,6 +304,9 @@ const ObjetoPieza = function(){
             this.dibujarEnPanel()
             this.filaCompleta()
             this.nueva()
+            if(this.gameOver()){
+              reseteo()
+            }
            }
            this.aumentoDist = 0
         }
@@ -365,11 +368,26 @@ const ObjetoPieza = function(){
       }
     }
 
+    const gameOver = function(){
+      let gameOver = false
+      for(let fila = 1; fila < 10 + 1; fila ++){
+        if(tablero[2][fila] !== 0){
+          gameOver = true
+        }
+      }
+      return gameOver
+    }
+
     this.nueva()
 }
 
 
 // Funciones
+
+const reseteo = ()=>{
+
+}
+
 const dibujarTablero = ()=>{
     for(let fila = 0; fila < 16 + margen; fila ++){
         for(let col = 1; col < 10 + 1; col ++){

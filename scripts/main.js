@@ -385,7 +385,13 @@ const ObjetoPieza = function(){
 // Funciones
 
 const reseteo = ()=>{
-
+  for (let fila = 0; fila < 16 + 1; fila ++){
+    for(let col = 0; col < 10 + 2; col ++){
+      if(tablero[fila][col] !== 9){
+        tablero[fila][col] = 0
+      }
+    }
+  }
 }
 
 const dibujarTablero = ()=>{

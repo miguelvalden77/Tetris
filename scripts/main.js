@@ -8,6 +8,7 @@ const resetButton = document.getElementById("reset-button")
 const canvasContainer = document.getElementById("canvas-container")
 const scoreContainer = document.getElementById("score")
 const gameOverAudio = document.getElementById("game-over-audio")
+const beep = document.getElementById("beep")
 let score = 0
 
 const piezas = [
@@ -326,15 +327,16 @@ const ObjetoPieza = function(){
     this.rotar = function(){
         let nuevoAngulo = this.angulo
         if(nuevoAngulo < 3){
+          beep.play()
           nuevoAngulo ++
         } else{
+          beep.play()
           nuevoAngulo = 0
         }
         if(!this.colision(nuevoAngulo, this.y, this.x)){
           this.angulo = nuevoAngulo
-        } else{
-          console.log("Hola")
-        }
+          beep.play()
+        } 
     }
 
     this.abajo = ()=>{

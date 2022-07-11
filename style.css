@@ -56,3 +56,13 @@ body{
 .gameOver{
     display: none;
 }
+
+.reset-button{
+    display: block;
+    padding: 1rem 2.5rem;
+    font-size: 1.5rem;
+    background-color: blue;
+    color: white;
+    border-radius: 6px;
+    margin: auto;
+}

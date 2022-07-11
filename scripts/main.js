@@ -460,7 +460,6 @@ const gameLoop = ()=>{
 }
 
 
-
 // AddEventListeners
 startBtn.addEventListener("click", ()=>{
     startScreen.style.display = "none"

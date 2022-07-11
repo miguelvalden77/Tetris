@@ -9,6 +9,7 @@ const canvasContainer = document.getElementById("canvas-container")
 const scoreContainer = document.getElementById("score")
 const gameOverAudio = document.getElementById("game-over-audio")
 const beep = document.getElementById("beep")
+const filaCompleta = document.getElementById("fila")
 let score = 0
 
 const piezas = [
@@ -286,6 +287,7 @@ const ObjetoPieza = function(){
           }
           }
         if(completa){
+            filaCompleta.play()
             score ++
             scoreContainer.textContent = score
             for(col = 1; col < 10 + 1; col ++){

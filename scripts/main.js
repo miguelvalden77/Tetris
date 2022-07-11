@@ -5,6 +5,9 @@ const startBtn = document.getElementById("start-button")
 const startScreen = document.getElementById("start")
 const gameOverScreen = document.getElementById("gameOver")
 const resetButton = document.getElementById("reset-button")
+const canvasContainer = document.getElementById("canvas-container")
+
+let score = 0
 
 const piezas = [
     [
@@ -281,6 +284,7 @@ const ObjetoPieza = function(){
           }
           }
         if(completa){
+            score ++
             for(col = 1; col < 10 + 1; col ++){
               tablero[fila][col] = 0
             }
@@ -309,7 +313,7 @@ const ObjetoPieza = function(){
             if(this.gameOver()){
               reseteo()
               gameOverScreen.style.display = "block"
-              canvas.style.display = "none"
+              canvasContainer.style.display = "none"
             }
            }
            this.aumentoDist = 0
@@ -458,9 +462,14 @@ const gameLoop = ()=>{
 // AddEventListeners
 startBtn.addEventListener("click", ()=>{
     startScreen.style.display = "none"
-    canvas.style.display = "block"
+    canvasContainer.style.display = "block"
 
     addEventListener("load", inicio())
 
+})
+
+resetButton.addEventListener("click", ()=>{
+    startScreen.style.display = "block"
+    gameOverScreen.style.display = "none"
 })
 

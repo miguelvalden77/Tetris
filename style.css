@@ -29,6 +29,9 @@ body{
 
 .main-canvas{
     background-color: gray;
+}
+
+.canvas-container{
     display: none;
 }
 

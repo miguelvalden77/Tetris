@@ -6,6 +6,7 @@ const startScreen = document.getElementById("start")
 const gameOverScreen = document.getElementById("gameOver")
 const resetButton = document.getElementById("reset-button")
 const canvasContainer = document.getElementById("canvas-container")
+const scoreContainer = document.getElementById("score")
 
 let score = 0
 
@@ -285,6 +286,7 @@ const ObjetoPieza = function(){
           }
         if(completa){
             score ++
+            scoreContainer.textContent = score
             for(col = 1; col < 10 + 1; col ++){
               tablero[fila][col] = 0
             }

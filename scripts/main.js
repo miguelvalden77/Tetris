@@ -7,7 +7,7 @@ const gameOverScreen = document.getElementById("gameOver")
 const resetButton = document.getElementById("reset-button")
 const canvasContainer = document.getElementById("canvas-container")
 const scoreContainer = document.getElementById("score")
-
+const gameOverAudio = document.getElementById("game-over-audio")
 let score = 0
 
 const piezas = [
@@ -313,6 +313,7 @@ const ObjetoPieza = function(){
             this.filaCompleta()
             this.nueva()
             if(this.gameOver()){
+              gameOverAudio.play()
               reseteo()
               gameOverScreen.style.display = "block"
               canvasContainer.style.display = "none"

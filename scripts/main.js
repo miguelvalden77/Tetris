@@ -260,7 +260,7 @@ const ObjetoPieza = function(){
         for(fila = 0; fila < 4; fila ++){
             for(col = 0; col < 4; col ++){
                 if(piezas[this.tipoPieza][this.angulo][fila][col] !== 0){
-                    contexto.fillStyle = colores[this.tipoPieza]
+                    contexto.fillStyle = colores[this.tipoPieza + 1]
                     const x0 = (this.x + col - 1) * anchoPieza
                     const y0 = (this.y + fila - margen) * altoPieza
                     contexto.fillRect(x0, y0, anchoPieza, altoPieza)
@@ -268,6 +268,24 @@ const ObjetoPieza = function(){
             }
         }
     }
+
+    this.filaCompleta = ()=>{
+      let completa = false
+      for(let fila = margen; fila < 20; fila ++){
+        completa = true
+        for(let col = 1; col < 10 + 1; col ++){
+          if(tablero[fila][col] === 0){
+            completa = false
+          }
+          }
+        if(completa){
+            for(col = 1; col < 10 + 1; col ++){
+              tablero[fila][col] = 0
+            }
+          }
+        }
+      }
+    
 
     this.nueva = function(){
         const posicion = Math.floor(Math.random()*7)
@@ -284,6 +302,7 @@ const ObjetoPieza = function(){
               this.y++
            } else{
             this.dibujarEnPanel()
+            this.filaCompleta()
             this.nueva()
            }
            this.aumentoDist = 0

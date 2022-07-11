@@ -3,6 +3,8 @@ const contexto = canvas.getContext("2d")
 const FPS = 100
 const startBtn = document.getElementById("start-button")
 const startScreen = document.getElementById("start")
+const gameOverScreen = document.getElementById("gameOver")
+const resetButton = document.getElementById("reset-button")
 
 const piezas = [
     [
@@ -306,6 +308,8 @@ const ObjetoPieza = function(){
             this.nueva()
             if(this.gameOver()){
               reseteo()
+              gameOverScreen.style.display = "block"
+              canvas.style.display = "none"
             }
            }
            this.aumentoDist = 0
@@ -368,7 +372,7 @@ const ObjetoPieza = function(){
       }
     }
 
-    const gameOver = function(){
+    this.gameOver = function(){
       let gameOver = false
       for(let fila = 1; fila < 10 + 1; fila ++){
         if(tablero[2][fila] !== 0){

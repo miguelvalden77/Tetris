@@ -168,3 +168,7 @@ body{
     border: none;
     color: rgb(216 213 208);
 }
+ .cancion{
+    margin-bottom: .75rem;
+    font-size: 1rem;
+ }

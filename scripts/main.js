@@ -22,6 +22,7 @@ const video = document.getElementById("video")
 const tetrisMusic = document.getElementById("tetris")
 const invertido = document.getElementById("invertido")
 const restart_2 = document.getElementById("restart-2")
+const range = document.getElementById("range")
 let score = 0
 let correrJuego = true
 
@@ -506,10 +507,12 @@ startBtn.addEventListener("click", ()=>{
 
 pause.addEventListener("click", ()=>{
   correrJuego = false
+  tetrisMusic.pause()
 })
 
 continuar.addEventListener("click", ()=>{
   correrJuego = true
+  tetrisMusic.play()
 })
 
 
@@ -560,6 +563,9 @@ finishBtn.addEventListener("click", ()=>{
   fotoContext.drawImage(video, 0, 0, canvasFoto.width, canvasFoto.height)
 })
 
+range.addEventListener("change", ()=>{
+  tetrisMusic.volume = range.value
+})
 
 // filtros
 const invertidoFiltro = ()=>{

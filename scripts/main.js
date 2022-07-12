@@ -415,7 +415,7 @@ const ObjetoPieza = function(){
 // Funciones
 
 const ganar = ()=>{
-  if(score === 1){
+  if(score === 2){
     canvasContainer.style.display = "none"
     victoria.style.display = "block"
     correrJuego = false
@@ -567,24 +567,7 @@ range.addEventListener("change", ()=>{
   tetrisMusic.volume = range.value
 })
 
-// filtros
-const invertidoFiltro = ()=>{
-    let imagenNueva = new Image()
-    imagenNueva.src = canvasFoto.getImageData(0, 0, canvasFoto.width, canvasFoto.height)
-
-    let data = Imagendata.data
-
-    for(let i = 0; i < data.length; i += 4){ 
-      // Filtro invertido
-      data[i] = 255 - data[i]
-      data[i + 1] = 255 - data[i + 1]
-      data[i + 2] = 255 - data[i + 2]
-  }
-
-  canvasFoto.putImage(imagenNueva.src, 0, 0)
-}
-
 invertido.addEventListener("click", ()=>{
-  console.log("Filtro")
-  invertidoFiltro()
+  startScreen.style.display = "flex"
+  finish.style.display = "none"
 })

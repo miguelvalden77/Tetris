@@ -410,7 +410,7 @@ const ganar = ()=>{
   if(score === 1){
     canvasContainer.style.display = "none"
     victoria.style.display = "block"
-
+    correrJuego = false
   }
 }
 

@@ -15,9 +15,13 @@ img{
     display: block;
 }
 
+.flex{
+    display: flex;
+}
+
 .img-container{
     width: 600px; 
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
 }
 
 body{
@@ -25,10 +29,62 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: linear-gradient(to bottom, rgb(4, 4, 73), rgb(21, 21, 82), rgb(54, 54, 104), rgb(123, 123, 167), rgb(146, 146, 217));
+}
+
+.main-title{
+    margin-bottom: 4rem;
+    font-size: 5rem;
+}
+
+.main-title span{
+    display: inline-block;
+    margin-right: 3rem;
+}
+
+.main-title span:nth-of-type(1):hover{
+    color: rgb(34, 179, 68);
+    transform: scale(1.4);
+    transition: 0.25s transform linear;
+}
+
+
+.main-title span:nth-of-type(2):hover{
+    color: rgb(236, 7, 18);
+    transform: scale(1.4);
+    transition: 0.25s transform linear;
+}
+
+
+.main-title span:nth-of-type(3):hover{
+    color: rgb(34, 18, 211);
+    transform: scale(1.4);
+    transition: 0.25s transform linear;
+}
+
+
+.main-title span:nth-of-type(4):hover{
+    color: rgb(188, 12, 129);
+    transform: scale(1.4);
+    transition: 0.25s transform linear;
+}
+
+
+.main-title span:nth-of-type(5):hover{
+    color: rgb(232, 165, 9);
+    transform: scale(1.4);
+    transition: 0.25s transform linear;
+}
+
+
+.main-title span:nth-of-type(6):hover{
+    color: rgb(196, 6, 249);
+    transform: scale(1.4);
+    transition: 0.25s transform linear;
 }
 
 .main-canvas{
-    background-color: gray;
+    background-color: rgb(216, 213, 208);
 }
 
 .canvas-container{
@@ -36,11 +92,18 @@ body{
 }
 
 .start-button{
-    padding: 1rem 2.5rem;
+    padding: 1rem 3rem;
     font-size: 1.5rem;
     background-color: blue;
     color: white;
     border-radius: 6px;
+    background-color: rgb(19, 18, 69);
+    box-shadow: 3px 2px 0 2px black;
+}
+
+.start-button:hover{
+    transform: scale(1.1);
+    transition: 0.3s transform linear ;
 }
 
 .start{
@@ -74,4 +137,34 @@ body{
 .foto-finish{
     display: none;
     border: 1px solid black;
+}
+
+.controles{
+    margin-left: 2rem;
+}
+
+.control{
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    margin-bottom: 2rem;
+    border: none;
+    font-size: 1.25rem;
+    background-image: radial-gradient(white, rgb(135, 135, 135));
+}
+
+.puntuación{
+    margin-bottom: 2rem;
+    color: white;
+}
+
+.restart{
+    display: block;
+    padding: 1rem 2.5rem;
+    font-size: 1.5rem;
+    color: white;
+    border-radius: 6px;
+    margin: auto;
+    background-image: linear-gradient(135deg, rgb(216 213 208), rgb(196 6 249));
+    border: none;
+    color: rgb(216 213 208);
 }

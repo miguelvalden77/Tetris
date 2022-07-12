@@ -21,6 +21,7 @@ const fotoContext = canvasFoto.getContext("2d")
 const video = document.getElementById("video")
 const tetrisMusic = document.getElementById("tetris")
 const invertido = document.getElementById("invertido")
+const restart_2 = document.getElementById("restart-2")
 let score = 0
 let correrJuego = true
 
@@ -495,7 +496,7 @@ startBtn.addEventListener("click", ()=>{
     correrJuego = true
     score = 0
     startScreen.style.display = "none"
-    canvasContainer.style.display = "block"
+    canvasContainer.style.display = "flex"
     FPS = 50
     tetrisMusic.play()
 
@@ -515,6 +516,11 @@ continuar.addEventListener("click", ()=>{
 resetButton.addEventListener("click", ()=>{
     startScreen.style.display = "block"
     gameOverScreen.style.display = "none"
+})
+
+restart_2.addEventListener("click", ()=>{
+  victoria.style.display = "none"
+  startScreen.style.display = "flex"
 })
 
 restart.addEventListener("click", ()=>{
@@ -569,7 +575,7 @@ const invertidoFiltro = ()=>{
       data[i + 2] = 255 - data[i + 2]
   }
 
-  canvasFoto.putImage(Imagendata.src, 0, 0)
+  canvasFoto.putImage(imagenNueva.src, 0, 0)
 }
 
 invertido.addEventListener("click", ()=>{

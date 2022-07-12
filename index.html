@@ -14,17 +14,17 @@
     <audio id="tetris" src="images/Tetris 99 - Main Theme.mp3"></audio>
     
     <div class="start flex-down" id="start">
-        <div class="img-container">
-            <img src="images/start-screen.jpg" alt="imagen Tetris">
-        </div>
+        <h1 class="main-title"><span>T</span><span>E</span><span>T</span><span>R</span><span>I</span><span>S</span></h1>
         <button class="start-button" id="start-button">Start</button>
     </div>
 
-    <div id="canvas-container" class="canvas-container">
+    <div id="canvas-container" class="flex canvas-container">
         <canvas class="main-canvas" id="canvas" width="400" height="640"></canvas>
-        <h3>Puntuación: <span id="score"></span></h3>
-        <button class="reset-button" id="Pause">Pause</button>
-        <button class="reset-button" id="Continue">Continue</button>
+        <div class="controles">
+        <h3 class="puntuación">Puntuación: <span id="score">0</span></h3>
+        <button class="control" id="Pause">Pause</button>
+        <button class="control" id="Continue">Continue</button>
+        </div>
     </div>
     
     <div class="gameOver flex-down" id="gameOver">
@@ -38,7 +38,8 @@
         <div class="img-container">
             <img src="images/descarga.jpg" alt="victoria">
         </div>
-        <button class="reset-button" id="restart">Restart</button>
+        <button class="restart" id="restart">Foto</button>
+        <button class="restart" id="restart-2">Restart</button>
     </div>
 
     <div id="foto-finish" class="foto-finish flex-down">

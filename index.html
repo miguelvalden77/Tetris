@@ -16,6 +16,7 @@
     <div class="start flex-down" id="start">
         <h1 class="main-title"><span>T</span><span>E</span><span>T</span><span>R</span><span>I</span><span>S</span></h1>
         <button class="start-button" id="start-button">Start</button>
+        <input type="text" id="nombre-jugador"  placeholder="Introduzca su nombre">
     </div>
 
     <div id="canvas-container" class="flex canvas-container">
@@ -26,6 +27,7 @@
         <button class="control" id="Continue">Continue</button>
         <h4 class="cancion">Canción</h4>
         <input id="range" class="range" type="range" min="0" max="1" step="0.01">
+        <h3 id="contenedor-nombre"></h3>
 
         </div>
     </div>
@@ -48,8 +50,8 @@
     <div id="foto-finish" class="foto-finish flex-down">
         <canvas id="foto" width="400" height="300"></canvas>
         <video src="" id="video" playsinline autoplay></video>
-        <button class="reset-button" id="hacer-foto">Hacer foto</button>´
-        <button class="reset-button" id="invertido">Restart</button>
+        <button class="foto-button" id="hacer-foto">Hacer foto</button>
+        <button class="foto-button" id="invertido">Restart</button>
     </div>
 
     <script src="scripts/main.js"></script>

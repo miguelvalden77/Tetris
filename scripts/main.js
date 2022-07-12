@@ -23,6 +23,8 @@ const tetrisMusic = document.getElementById("tetris")
 const invertido = document.getElementById("invertido")
 const restart_2 = document.getElementById("restart-2")
 const range = document.getElementById("range")
+const nombreJugador = document.getElementById("nombre-jugador")
+const contenedorNombre = document.getElementById("contenedor-nombre")
 let score = 0
 let correrJuego = true
 
@@ -411,13 +413,12 @@ const ObjetoPieza = function(){
     this.nueva()
 }
 
-
 // Funciones
 
 const ganar = ()=>{
-  if(score === 2){
+  if(score === 1){
     canvasContainer.style.display = "none"
-    victoria.style.display = "block"
+    victoria.style.display = "flex"
     correrJuego = false
     tetrisMusic.pause()
   }
@@ -482,6 +483,7 @@ const inicio = ()=>{
 const gameLoop = ()=>{
 
   if(correrJuego === true){
+    nombres()
     limpiarCanvas()
     pieza.estaAbajo()
     dibujarTablero()
@@ -528,7 +530,7 @@ restart_2.addEventListener("click", ()=>{
 
 restart.addEventListener("click", ()=>{
   victoria.style.display = "none"
-  finish.style.display = "block"
+  finish.style.display = "flex"
 })
 
 // video, foto
@@ -542,7 +544,7 @@ const imagen = async ()=>{ //asíncrono
  try {
    // Objeto con los permisos que necesita stream
    const constraints = {
-      audio: true,
+      audio: false,
       video: {
           width: 400,
           height: 300
@@ -571,3 +573,8 @@ invertido.addEventListener("click", ()=>{
   startScreen.style.display = "flex"
   finish.style.display = "none"
 })
+
+const nombres = ()=>{
+  let nombre = nombreJugador.value
+  contenedorNombre.textContent = nombre
+}

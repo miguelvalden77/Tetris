@@ -103,6 +103,7 @@ body{
     border-radius: 6px;
     background-color: rgb(19, 18, 69);
     box-shadow: 3px 2px 0 2px black;
+    margin-bottom: 1.5rem;
 }
 
 .start-button:hover{
@@ -156,6 +157,10 @@ body{
     background-image: radial-gradient(white, rgb(135, 135, 135));
 }
 
+.control:hover{
+    transform: scale(1.10);
+}
+
 .puntuación{
     margin-bottom: 2rem;
     color: white;
@@ -167,7 +172,7 @@ body{
     font-size: 1.5rem;
     color: white;
     border-radius: 6px;
-    margin: auto;
+    margin-bottom: 2rem;
     background-image: linear-gradient(135deg, rgb(216 213 208), rgb(196 6 249));
     border: none;
     color: rgb(216 213 208);
@@ -176,3 +181,16 @@ body{
     margin-bottom: .75rem;
     font-size: 1rem;
  }
+
+.foto-button{
+    padding: 1rem 3rem;
+    background-color: blueviolet;
+    color: white;
+    border-radius: 5px;
+    margin-bottom: 2rem;
+}
+
+#nombre-jugador{
+    border-radius: 5px;
+    padding: 0.75rem;
+}

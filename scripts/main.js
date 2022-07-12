@@ -19,6 +19,8 @@ const continuar = document.getElementById("Continue")
 const canvasFoto = document.getElementById("foto")
 const fotoContext = canvasFoto.getContext("2d")
 const video = document.getElementById("video")
+const tetrisMusic = document.getElementById("tetris")
+const invertido = document.getElementById("invertido")
 let score = 0
 let correrJuego = true
 
@@ -398,6 +400,7 @@ const ObjetoPieza = function(){
       for(let fila = 1; fila < 10 + 1; fila ++){
         if(tablero[2][fila] !== 0){
           gameOver = true
+          tetrisMusic.pause()
         }
       }
       return gameOver
@@ -414,6 +417,7 @@ const ganar = ()=>{
     canvasContainer.style.display = "none"
     victoria.style.display = "block"
     correrJuego = false
+    tetrisMusic.pause()
   }
 }
 
@@ -493,6 +497,7 @@ startBtn.addEventListener("click", ()=>{
     startScreen.style.display = "none"
     canvasContainer.style.display = "block"
     FPS = 50
+    tetrisMusic.play()
 
     addEventListener("load", inicio())
 
@@ -549,3 +554,25 @@ finishBtn.addEventListener("click", ()=>{
   fotoContext.drawImage(video, 0, 0, canvasFoto.width, canvasFoto.height)
 })
 
+
+// filtros
+const invertidoFiltro = ()=>{
+    let imagenNueva = new Image()
+    imagenNueva.src = canvasFoto.getImageData(0, 0, canvasFoto.width, canvasFoto.height)
+
+    let data = Imagendata.data
+
+    for(let i = 0; i < data.length; i += 4){ 
+      // Filtro invertido
+      data[i] = 255 - data[i]
+      data[i + 1] = 255 - data[i + 1]
+      data[i + 2] = 255 - data[i + 2]
+  }
+
+  canvasFoto.putImage(Imagendata.src, 0, 0)
+}
+
+invertido.addEventListener("click", ()=>{
+  console.log("Filtro")
+  invertidoFiltro()
+})

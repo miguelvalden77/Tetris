@@ -1,6 +1,6 @@
 const canvas = document.getElementById("canvas")
 const contexto = canvas.getContext("2d")
-const FPS = 100
+let FPS = 50
 const startBtn = document.getElementById("start-button")
 const startScreen = document.getElementById("start")
 const gameOverScreen = document.getElementById("gameOver")
@@ -10,7 +10,14 @@ const scoreContainer = document.getElementById("score")
 const gameOverAudio = document.getElementById("game-over-audio")
 const beep = document.getElementById("beep")
 const filaCompleta = document.getElementById("fila")
+const victoria = document.getElementById("victoria")
+const restart = document.getElementById("restart")
+const finish = document.getElementById("foto-finish")
+const finishBtn = document.getElementById("hacer-foto")
+const pause = document.getElementById("Pause")
+const continuar = document.getElementById("Continue")
 let score = 0
+let correrJuego = true
 
 const piezas = [
     [
@@ -399,6 +406,14 @@ const ObjetoPieza = function(){
 
 // Funciones
 
+const ganar = ()=>{
+  if(score === 1){
+    canvasContainer.style.display = "none"
+    victoria.style.display = "block"
+
+  }
+}
+
 const reseteo = ()=>{
   for (let fila = 0; fila < 16 + 1; fila ++){
     for(let col = 0; col < 10 + 2; col ++){
@@ -457,25 +472,46 @@ const inicio = ()=>{
 
 const gameLoop = ()=>{
 
+  if(correrJuego === true){
     limpiarCanvas()
     pieza.estaAbajo()
     dibujarTablero()
     pieza.dibujar()
+    ganar()
+  }
 
 }
 
 
 // AddEventListeners
 startBtn.addEventListener("click", ()=>{
+    score = 0
     startScreen.style.display = "none"
     canvasContainer.style.display = "block"
+    FPS = 50
 
     addEventListener("load", inicio())
 
 })
 
+pause.addEventListener("click", ()=>{
+  correrJuego = false
+})
+
+continuar.addEventListener("click", ()=>{
+  correrJuego = true
+})
+
+
 resetButton.addEventListener("click", ()=>{
     startScreen.style.display = "block"
     gameOverScreen.style.display = "none"
 })
+
+restart.addEventListener("click", ()=>{
+  victoria.style.display = "none"
+  finish.style.display = "block"
+})
+
+
 

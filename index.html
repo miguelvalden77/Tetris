@@ -22,6 +22,8 @@
     <div id="canvas-container" class="canvas-container">
         <canvas class="main-canvas" id="canvas" width="400" height="640"></canvas>
         <h3>Puntuación: <span id="score"></span></h3>
+        <button class="reset-button" id="Pause">Pause</button>
+        <button class="reset-button" id="Continue">Continue</button>
     </div>
     
     <div class="gameOver flex-down" id="gameOver">
@@ -29,6 +31,18 @@
             <img src="images/game-over.jpg" alt="game-over">
         </div>
         <button class="reset-button" id="reset-button">Reset</button>
+    </div>
+
+    <div id="victoria" class="victoria flex-down">
+        <div class="img-container">
+            <img src="images/descarga.jpg" alt="victoria">
+        </div>
+        <button class="reset-button" id="restart">Restart</button>
+    </div>
+
+    <div id="foto-finish" class="foto-finish flex-down">
+        <canvas id="foto" width="400" height="300"></canvas>
+        <button class="reset-button" id="hacer-foto">Hacer foto</button>
     </div>
 
     <script src="scripts/main.js"></script>

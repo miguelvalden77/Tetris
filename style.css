@@ -66,3 +66,12 @@ body{
     border-radius: 6px;
     margin: auto;
 }
+
+.victoria{
+    display: none;
+}
+
+.foto-finish{
+    display: none;
+    border: 1px solid black;
+}

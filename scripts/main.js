@@ -16,6 +16,9 @@ const finish = document.getElementById("foto-finish")
 const finishBtn = document.getElementById("hacer-foto")
 const pause = document.getElementById("Pause")
 const continuar = document.getElementById("Continue")
+const canvasFoto = document.getElementById("foto")
+const fotoContext = canvasFoto.getContext("2d")
+const video = document.getElementById("video")
 let score = 0
 let correrJuego = true
 
@@ -485,6 +488,7 @@ const gameLoop = ()=>{
 
 // AddEventListeners
 startBtn.addEventListener("click", ()=>{
+    correrJuego = true
     score = 0
     startScreen.style.display = "none"
     canvasContainer.style.display = "block"
@@ -513,5 +517,35 @@ restart.addEventListener("click", ()=>{
   finish.style.display = "block"
 })
 
+// video, foto
+const mostrarEnVideo = (stream)=>{
+  window.strem = stream
+  video.srcObject = stream
+}
 
+const imagen = async ()=>{ //asíncrono
+
+ try {
+   // Objeto con los permisos que necesita stream
+   const constraints = {
+      audio: true,
+      video: {
+          width: 400,
+          height: 300
+      }
+  }
+  // stream es la respuesta del objeto navigator
+  const stream = await navigator.mediaDevices.getUserMedia(constraints)
+
+  mostrarEnVideo(stream)
+
+ } catch (error) {
+  console.error(error.message)
+ }
+}
+
+finishBtn.addEventListener("click", ()=>{
+  imagen()
+  fotoContext.drawImage(video, 0, 0, canvasFoto.width, canvasFoto.height)
+})
 

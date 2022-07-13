@@ -418,9 +418,10 @@ const ObjetoPieza = function(){
 // Funciones
 
 const ganar = ()=>{
-  if(score === 1){
+  if(score >= 1){
     canvasContainer.style.display = "none"
     victoria.style.display = "flex"
+    body.classList.add("fondo")
     correrJuego = false
     tetrisMusic.pause()
   }
@@ -533,6 +534,7 @@ restart_2.addEventListener("click", ()=>{
 })
 
 restart.addEventListener("click", ()=>{
+  body.classList.remove("fondo")
   victoria.style.display = "none"
   finish.style.display = "flex"
 })

@@ -277,7 +277,7 @@ const ObjetoPieza = function(){
     this.x = 0
     this.y = 0
     this.angulo = 1
-    this.tipoPieza = 1
+    this.tipoPieza
     this.dist = 50
     this.aumentoDist = 0
 
@@ -329,9 +329,9 @@ const ObjetoPieza = function(){
            if(!this.colision(this.angulo, this.y + 1, this.x)){
               this.y++
            } else{
-            this.dibujarEnPanel()
-            this.filaCompleta()
-            this.nueva()
+             this.dibujarEnPanel()
+             this.filaCompleta()
+             this.nueva()
             if(this.gameOver()){
               gameOverAudio.play()
               reseteo()

@@ -41,6 +41,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: 'Rubik Moonrocks', cursive;
     /* background-image: linear-gradient(to bottom, rgb(4, 4, 73), rgb(21, 21, 82), rgb(54, 54, 104), rgb(123, 123, 167), rgb(146, 146, 217)); */
 }
 
@@ -164,7 +165,7 @@ body{
     margin-bottom: 2rem;
     border: none;
     font-size: 1.25rem;
-    background-color: #F4F4EE;
+    background-color: rgb(235, 237, 202);
     color: rgb(0, 0, 0);
     /* background-image: radial-gradient(white, rgb(135, 135, 135)); */
 }

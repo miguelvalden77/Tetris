@@ -449,7 +449,7 @@ const dibujarTablero = ()=>{
     }
 }
 const limpiarCanvas = ()=>{
-    contexto.fillStyle = "gray"
+    contexto.fillStyle = "#F4F4EE"
     contexto.fillRect(0, 0, canvas.width, canvas.height)
 }
 
@@ -545,7 +545,6 @@ const mostrarEnVideo = (stream)=>{
 
 const imagen = async ()=>{ //asíncrono
 
- try {
    // Objeto con los permisos que necesita stream
    const constraints = {
       audio: false,
@@ -558,10 +557,6 @@ const imagen = async ()=>{ //asíncrono
   const stream = await navigator.mediaDevices.getUserMedia(constraints)
 
   mostrarEnVideo(stream)
-
- } catch (error) {
-  console.error(error.message)
- }
 }
 
 finishBtn.addEventListener("click", ()=>{
@@ -569,7 +564,7 @@ finishBtn.addEventListener("click", ()=>{
   fotoContext.drawImage(video, 0, 0, canvasFoto.width, canvasFoto.height)
 })
 
-range.addEventListener("change", ()=>{
+range.addEventListener("mousemove", ()=>{
   tetrisMusic.volume = range.value
 })
 

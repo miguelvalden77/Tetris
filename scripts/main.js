@@ -25,6 +25,7 @@ const restart_2 = document.getElementById("restart-2")
 const range = document.getElementById("range")
 const nombreJugador = document.getElementById("nombre-jugador")
 const contenedorNombre = document.getElementById("contenedor-nombre")
+const body = document.getElementById("body")
 let score = 0
 let correrJuego = true
 
@@ -280,7 +281,7 @@ const ObjetoPieza = function(){
     this.dist = 50
     this.aumentoDist = 0
 
-    this.dibujar = function(){
+    this.dibujar = ()=>{
         for(fila = 0; fila < 4; fila ++){
             for(col = 0; col < 4; col ++){
                 if(piezas[this.tipoPieza][this.angulo][fila][col] !== 0){
@@ -314,14 +315,14 @@ const ObjetoPieza = function(){
       }
     
 
-    this.nueva = function(){
+    this.nueva = ()=> {
         const posicion = Math.floor(Math.random()*7)
         this.tipoPieza = posicion
         this.x = 4
         this.y = 0
     }
 
-    this.estaAbajo = function(){
+    this.estaAbajo = ()=>{
         if(this.aumentoDist < this.dist){
             this.aumentoDist ++
         } else{
@@ -342,7 +343,7 @@ const ObjetoPieza = function(){
         }
     }
 
-    this.rotar = function(){
+    this.rotar = () =>{
         let nuevoAngulo = this.angulo
         if(nuevoAngulo < 3){
           beep.play()
@@ -375,7 +376,7 @@ const ObjetoPieza = function(){
         }
     }
 
-    this.colision = function(nuevoAngulo, filaNueva, colNueva){
+    this.colision = (nuevoAngulo, filaNueva, colNueva)=>{
       let haycolision = false
       for(let fila = 0; fila < 4; fila++){
         for(let col = 0; col < 4; col++){
@@ -389,7 +390,7 @@ const ObjetoPieza = function(){
       return haycolision
     }
 
-    this.dibujarEnPanel = function(){
+    this.dibujarEnPanel = ()=>{
       for(let fila = 0; fila < 4; fila ++){
         for(let col = 0; col < 4; col ++){
           if(piezas[this.tipoPieza][this.angulo][fila][col] !== 0){
@@ -399,11 +400,12 @@ const ObjetoPieza = function(){
       }
     }
 
-    this.gameOver = function(){
+    this.gameOver = ()=>{
       let gameOver = false
       for(let fila = 1; fila < 10 + 1; fila ++){
         if(tablero[2][fila] !== 0){
           gameOver = true
+          body.classList.add("fondo")
           tetrisMusic.pause()
         }
       }
@@ -519,7 +521,9 @@ continuar.addEventListener("click", ()=>{
 
 
 resetButton.addEventListener("click", ()=>{
-    startScreen.style.display = "block"
+    startScreen.style.display = "flex"
+    correrJuego = false
+    body.classList.remove("fondo")
     gameOverScreen.style.display = "none"
 })
 

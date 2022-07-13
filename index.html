@@ -7,7 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body id="body">
     <audio id="game-over-audio" src="images/game-over.mp3"></audio>
     <audio id="beep" src="images/vidrio_1.mp3"></audio>
     <audio id="fila" src="images/mario-bros-1-up.mp3"></audio>
@@ -27,17 +27,19 @@
         <div class="controles">
         <h3 class="puntuación">Puntuación: <span id="score">0</span></h3>
         <button class="control" id="Pause"><strong>Pause</strong> </button>
-        <button class="control" id="Continue">  <strong>Continue</strong> </button>
+        <button class="control" id="Continue">  <strong>Continue</strong></button>
+        <div>
+            
+        </div>
         <h4 class="cancion">Canción</h4>
         <input id="range" class="range" type="range" min="0" max="1" step="0.01">
         <h3 id="contenedor-nombre"></h3>
-
         </div>
     </div>
     
     <div class="gameOver flex-down" id="gameOver">
         <div class="img-container">
-            <img src="images/game-over.jpg" alt="game-over">
+            <img src="images/game over 2.png" alt="game-over">
         </div>
         <button class="reset-button" id="reset-button">Reset</button>
     </div>

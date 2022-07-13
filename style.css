@@ -33,6 +33,7 @@ img{
 .img-container{
     width: 600px; 
     margin-bottom: 2rem;
+    background-color: black;
 }
 
 body{
@@ -95,7 +96,7 @@ body{
 }
 
 .main-canvas{
-    background-color: rgb(216, 213, 208);
+    background-color: rgb(178, 133, 56);
 }
 
 .canvas-container{
@@ -163,7 +164,7 @@ body{
     margin-bottom: 2rem;
     border: none;
     font-size: 1.25rem;
-    background-color: rgba(235, 237, 202, 0.745);
+    background-color: rgba(235, 237, 202, 0.922);
     color: rgb(0, 0, 0);
     /* background-image: radial-gradient(white, rgb(135, 135, 135)); */
 }
@@ -211,4 +212,14 @@ body{
 ::placeholder {
     color: rgba(255, 255, 255, 0.693);
     border: none;
+}
+
+.range{
+    color: bisque;
+}
+
+.fondo{
+    background-image: none;
+    backdrop-filter: none;
+    background-color: black;
 }

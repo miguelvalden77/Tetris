@@ -269,7 +269,7 @@ const margen = 4
 const anchoPieza = 40
 const altoPieza = 40
 let pieza
-const colores = ["red", "green", "blue", "brown", "orange", "pink", "purple"]
+const colores = ["red", "green", "blue", "brown", "orange", "pink", "purple", "red"]
 
 // Función creadora
 const ObjetoPieza = function(){
@@ -416,9 +416,8 @@ const ObjetoPieza = function(){
 }
 
 // Funciones
-
 const ganar = ()=>{
-  if(score >= 1){
+  if(score >= 2){
     canvasContainer.style.display = "none"
     victoria.style.display = "flex"
     body.classList.add("fondo")
@@ -486,6 +485,7 @@ const inicio = ()=>{
 const gameLoop = ()=>{
 
   if(correrJuego === true){
+    pieza.gameOver()
     nombres()
     limpiarCanvas()
     pieza.estaAbajo()
@@ -493,9 +493,7 @@ const gameLoop = ()=>{
     pieza.dibujar()
     ganar()
   }
-
 }
-
 
 // AddEventListeners
 startBtn.addEventListener("click", ()=>{
@@ -526,11 +524,15 @@ resetButton.addEventListener("click", ()=>{
     correrJuego = false
     body.classList.remove("fondo")
     gameOverScreen.style.display = "none"
+    window.location.reload()
 })
 
 restart_2.addEventListener("click", ()=>{
   victoria.style.display = "none"
   startScreen.style.display = "flex"
+  body.classList.remove("fondo")
+  score = 0
+  window.location.reload()
 })
 
 restart.addEventListener("click", ()=>{
@@ -573,6 +575,7 @@ range.addEventListener("mousemove", ()=>{
 invertido.addEventListener("click", ()=>{
   startScreen.style.display = "flex"
   finish.style.display = "none"
+  window.location.reload()
 })
 
 const nombres = ()=>{

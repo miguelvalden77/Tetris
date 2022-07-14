@@ -417,7 +417,7 @@ const ObjetoPieza = function(){
 
 // Funciones
 const ganar = ()=>{
-  if(score >= 3){
+  if(score >= 5){
     canvasContainer.style.display = "none"
     victoria.style.display = "flex"
     body.classList.add("fondo")

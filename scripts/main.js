@@ -26,8 +26,15 @@ const range = document.getElementById("range")
 const nombreJugador = document.getElementById("nombre-jugador")
 const contenedorNombre = document.getElementById("contenedor-nombre")
 const body = document.getElementById("body")
+const pointsToWin = document.getElementById("dificultad")
+
+const seccion_pieza = document.getElementById("next-pieza-section")
+const contexto_pieza = seccion_pieza.getContext("2d")
+
 let score = 0
 let correrJuego = true
+let win = 15
+let filaCompletaX = false
 
 const piezas = [
     [
@@ -265,11 +272,21 @@ const tablero = [
     [9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9]
 ]
 
+const next_tablero = 
+[
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0]
+]
+
 const margen = 4
 const anchoPieza = 40
 const altoPieza = 40
 let pieza
 const colores = ["red", "green", "blue", "brown", "orange", "pink", "purple", "red"]
+
+pointsToWin.textContent = win
 
 // Función creadora
 const ObjetoPieza = function(){
@@ -289,9 +306,27 @@ const ObjetoPieza = function(){
                     const x0 = (this.x + col - 1) * anchoPieza
                     const y0 = (this.y + fila - margen) * altoPieza
                     contexto.fillRect(x0, y0, anchoPieza, altoPieza)
+                    // contexto.lineTo(x0, y0, anchoPieza, altoPieza)
+                    // contexto.stroke()
                 }
             }
         }
+    }
+
+    this.dibujar_next_pieza = ()=>{
+      contexto_pieza.clearRect(0, 0, seccion_pieza.width, seccion_pieza.height)
+      for(fila = 0; fila < 4; fila ++){
+          for(col = 0; col < 4; col ++){
+              if(piezas[this.tipoPieza][0][fila][col] !== 0){
+                  contexto_pieza.fillStyle = colores[this.tipoPieza + 1]
+                  const x0 = (col) * anchoPieza
+                  const y0 = (fila) * altoPieza
+                  contexto_pieza.fillRect(x0, y0, anchoPieza, altoPieza)
+                  // contexto.lineTo(x0, y0, anchoPieza, altoPieza)
+                  // contexto.stroke()
+              }
+          }
+      }
     }
 
     this.filaCompleta = ()=>{
@@ -302,24 +337,42 @@ const ObjetoPieza = function(){
           if(tablero[fila][col] === 0){
             completa = false
           }
-          }
+        }
         if(completa){
             filaCompleta.play()
             score ++
             scoreContainer.textContent = score
+            
+            // Aumento dificultad
+            // FPS = this.aumentoDificultad(score, FPS)
+            //filaCompletaX = true
+            
             for(col = 1; col < 10 + 1; col ++){
               tablero[fila][col] = 0
             }
+            // nuevo
+            for(let xfila = fila - 1; xfila > 4; xfila--){
+              for(let col = 1; col < 10 + 1; col ++){
+                tablero[xfila + 1][col] = tablero[xfila][col]
+                tablero[xfila][col] = 0
+              }
+            }
+            // hasta aqui
+            clearInterval(intervalId)
+            intervalId = null
+            intervalId = setInterval(gameLoop, 1000 / aumentoDificultad(score))
           }
         }
       }
     
 
     this.nueva = ()=> {
+        filaCompletaX = false
         const posicion = Math.floor(Math.random()*7)
         this.tipoPieza = posicion
         this.x = 4
         this.y = 0
+        this.dibujar_next_pieza()
     }
 
     this.estaAbajo = ()=>{
@@ -344,6 +397,8 @@ const ObjetoPieza = function(){
     }
 
     this.rotar = () =>{
+      if(correrJuego === false) return
+
         let nuevoAngulo = this.angulo
         if(nuevoAngulo < 3){
           beep.play()
@@ -415,9 +470,20 @@ const ObjetoPieza = function(){
     this.nueva()
 }
 
+const aumentoDificultad = (puntuacion)=> {
+  if(puntuacion >= 10){
+    return 200
+  }
+  if(puntuacion >= 5){
+    return 100
+  } 
+
+  return 50
+}
+
 // Funciones
 const ganar = ()=>{
-  if(score >= 5){
+  if(score >= win){
     canvasContainer.style.display = "none"
     victoria.style.display = "flex"
     body.classList.add("fondo")
@@ -448,6 +514,7 @@ const dibujarTablero = ()=>{
         }
     }
 }
+
 const limpiarCanvas = ()=>{
     contexto.fillStyle = "#F4F4EE"
     contexto.fillRect(0, 0, canvas.width, canvas.height)
@@ -473,18 +540,28 @@ const listeners = ()=>{
     })
 }
 
+let intervalId
+
 const inicio = ()=>{
 
     listeners()
     pieza = new ObjetoPieza()
 
-    setInterval(gameLoop, 1000 / FPS)
+    intervalId = setInterval(gameLoop, 1000 / aumentoDificultad(score))
 
 }
 
 const gameLoop = ()=>{
 
   if(correrJuego === true){
+
+    // if(filaCompletaX == true){
+    //   console.log("Hola")
+    //   clearInterval(intervalId)
+    //   intervalId = null
+    //   inicio()
+    // }
+
     pieza.gameOver()
     nombres()
     limpiarCanvas()
@@ -497,11 +574,16 @@ const gameLoop = ()=>{
 
 // AddEventListeners
 startBtn.addEventListener("click", ()=>{
+    if(nombreJugador.value.trim() === ""){
+      nombreJugador.classList.add("invalid_name")
+      return
+    }  
+
     correrJuego = true
     score = 0
     startScreen.style.display = "none"
     canvasContainer.style.display = "flex"
-    FPS = 50
+    // FPS = 50
     tetrisMusic.play()
 
     addEventListener("load", inicio())
@@ -528,6 +610,7 @@ resetButton.addEventListener("click", ()=>{
 })
 
 restart_2.addEventListener("click", ()=>{
+  nombreJugador.classList.remove("invalid_name")
   victoria.style.display = "none"
   startScreen.style.display = "flex"
   body.classList.remove("fondo")
